@@ -30,11 +30,14 @@ def tweet_list_view(request):
 
 def tweet_create_view(request):
     form = TweetForm(request.POST or None)
+    next_url = request.POST.get("next") or None
+    ic(next_url)
     if request.method == 'POST':
         if form.is_valid():
             obj = form.save(commit=False)
-            ic(request.POST)
             obj.save()
+            if next_url != None:
+                return redirect(next_url)
             form = TweetForm()
 
     return render(request, 'components/form.html', context={"form": form})
