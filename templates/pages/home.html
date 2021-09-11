@@ -38,7 +38,21 @@ this is amazing!!!!
 <script>
     function handleTweetCreateFormDidSubmit(){
         event.preventDefault()
-        console.log(event)
+        const myForm = event.target
+        const myFormData = new FormData(myForm)
+        const url = myForm.getAttribute("action")
+        const method = myForm.getAttribute("method")
+        const xhr = new XMLHttpRequest()
+        xhr.open(method, url)
+        xhr.onload = function() {
+            const serverResponse = xhr.response
+            console.log(serverResponse)
+            const tweetsEl = document.getElementById("tweets")
+            loadTweets(tweetsEl)
+        }
+        console.log(method, url)
+        xhr.send(myFormData)
+
     }
     const tweetCreateFormEl = document.getElementById("tweet-create-form")
     tweetCreateFormEl.addEventListener("submit", handleTweetCreateFormDidSubmit)
