@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse, Http404, JsonResponse
 import random
 from .models import Tweet
+from .forms import TweetForm
 
 # Create your views here.
 
@@ -24,6 +25,15 @@ def tweet_list_view(request):
         "response": tweet_list,
     }
     return JsonResponse(data)
+
+
+def tweet_create_view(request):
+    form = TweetForm(request.POST or None)
+    if form.is_valid():
+        obj = form.save(commit=False)
+        obj.save()
+        form = TweetForm()
+    return render(request, 'components/form.html', context={"form": form})
 
 
 def tweet(request, tweet_id):
