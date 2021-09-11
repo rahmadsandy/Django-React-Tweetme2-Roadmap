@@ -6,17 +6,30 @@ this is amazing!!!!
 
 
 {% block content %}
+<style>
+    .tweet {
+        font-style: italic;
+    }
+</style>
+
 <div class='row text-center'>
     <div class='col'>
         <h1>Welcome to Tweetme 2</h1>
     </div>
 </div>
 
-<style>
-    .tweet {
-        font-style: italic;
-    }
-</style>
+<div class="row mb-3">
+    <form action="{% url 'create_tweet' %}" method="post">
+    {% csrf_token %}
+    <div class="col-md-4 mx-auto col-10">
+        
+        <input type="hidden" name="next" value="/" />
+        <textarea name="content" id="" cols="300" rows="10" class="form-control" placeholder="Your Tweet...."></textarea>
+        <button type="submit" class="btn btn-primary">Tweet</button>
+    </div>
+    </form>
+</div>
+
 
 
 <div class="row" id="tweets">
@@ -45,10 +58,10 @@ this is amazing!!!!
     }
 
     function formatTweetElemet(tweet) {
-        var formattedTweet = "<div class='col-12 col-md-10 mx-auto border rounded py-3 mb-4 tweet' id='tweet-" + tweet.id 
+        var formattedTweet = "<div class='row'> <div class='col-12' <div class='col-sm-4 col-md-10 mx-auto border rounded py-3 mb-4 tweet' id='tweet-" + tweet.id 
     + "'><p>" + tweet.content + 
         "</p><div class='btn-group'>" + LikeBtn(tweet) + DislikeBtn(tweet) +
-        "</div></div>"
+        "</div></div></div></div>"
         return formattedTweet
     }
 

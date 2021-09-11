@@ -1,6 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse, Http404, JsonResponse
 import random
+from icecream import ic
 from .models import Tweet
 from .forms import TweetForm
 
@@ -29,10 +30,13 @@ def tweet_list_view(request):
 
 def tweet_create_view(request):
     form = TweetForm(request.POST or None)
-    if form.is_valid():
-        obj = form.save(commit=False)
-        obj.save()
-        form = TweetForm()
+    if request.method == 'POST':
+        if form.is_valid():
+            obj = form.save(commit=False)
+            ic(request.POST)
+            obj.save()
+            form = TweetForm()
+
     return render(request, 'components/form.html', context={"form": form})
 
 
