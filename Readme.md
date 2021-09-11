@@ -4,18 +4,17 @@ Build a twitter-like app in Django, Bootstrap, Javascript, & React.js. Step-by-S
 [![Tweetme 2 Logo](https://static.codingforentrepreneurs.com/media/projects/tweetme-2/images/share/Tweetme2_share.jpg)](https://cfe.sh/projects/tweetme-2)
 
 ### Lesson Code
-_Lessons 1-5: no significant code added_
 [20 - Like Button Rendering](../../tree/4bd648ece45f9d85804ef17b427d7a0c3d68539e/)
 
-[21 - Rapid Implement of Bootstrap Theme](../../tree/7335b554e18a1d1c0999447410dffcc6a92e2266/)
+[21 - Rapid Implement of Bootstrap Theme](../../tree/6cfc2ca2664562d8445682c2a48c6a83d1bf178a/)
 
-[22 - Tweet Create Form](../../tree/4a56201848d5475b0ec8d4c59b22e307592eccae/)
+[22 - Tweet Create Form](../../tree/2b324e52aef93fb07fad1ea677dc0c32c660da72/)
 
-[23 - Tweet Form by Hand](../../tree/0a7553c2294fee17c1d1e84b92f27e532540d026/)
+[23 - Tweet Form by Hand](../../tree/990d858afa0cbdd0d5a9c53b71891aeea1e48e25/)
 
-[24 - Successful Form Redirect](../../tree/2e2f8c609e4815cba43468c8879823db0159c50f/)
+[24 - Successful Form Redirect](../../tree/2f8210888bd8c4a2d98968eff230a280c0a3305b/)
 
-[25 - Safe URL Redirect](../../tree/83c9b9e47ec1afa96a7164701851427ecf61d50d/)
+[25 - Safe URL Redirect](../../tree/a5fc852ff4a322246dfb983283cfd1566137a595/)
 
 [26 - Prevent Form Submit via JavaScript](../../tree/76cd131d96e7ef3690a62543fc4c23c75e63d4c6/)
 

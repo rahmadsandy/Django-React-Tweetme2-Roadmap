@@ -19,10 +19,9 @@ this is amazing!!!!
 </div>
 
 <div class="row mb-3">
-    <form action="{% url 'create_tweet' %}" method="post">
+    <form action="{% url 'create_tweet' %}" method="post" id="tweet-create-form" class="form">
     {% csrf_token %}
     <div class="col-md-4 mx-auto col-10">
-        
         <input type="hidden" name="next" value="/" />
         <textarea name="content" id="" cols="300" rows="3" class="form-control" placeholder="Your Tweet...."></textarea>
         <button type="submit" class="btn btn-primary">Tweet</button>
@@ -37,12 +36,38 @@ this is amazing!!!!
 </div>
 
 <script>
-    const tweetsElement = document.getElementById("tweets")
-    tweetsElement.innerHTML = "Loading...."
-    const xhr = new XMLHttpRequest()
-    const method = 'GET' // "POST"
-    const url = "/tweets"
-    const responseType = "json"
+    function handleTweetCreateFormDidSubmit(){
+        event.preventDefault()
+        console.log(event)
+    }
+    const tweetCreateFormEl = document.getElementById("tweet-create-form")
+    tweetCreateFormEl.addEventListener("submit", handleTweetCreateFormDidSubmit)
+
+    const tweetsEl = document.getElementById("tweets")
+
+    function loadTweets(tweetsElement) {
+        const xhr = new XMLHttpRequest()
+        const method = 'GET' // "POST"
+        const url = "/tweets"
+        const responseType = "json"
+        xhr.responseType = responseType
+        xhr.open(method, url)
+        xhr.onload = function() {
+            const serverResponse = xhr.response
+            const listedItems = serverResponse.response // array
+            var finalTweetStr = ""
+            var i;
+            for (i=0;i<listedItems.length; i++) {
+                var tweetObj = listedItems[i]
+                var currentItem = formatTweetElement(tweetObj)
+
+                finalTweetStr += currentItem
+            }
+            tweetsElement.innerHTML = finalTweetStr
+        }
+        xhr.send()
+}
+    loadTweets(tweetsEl)
 
     function handleDidLike (tweet_id, currentCount) {
         console.log(tweet_id, currentCount)
@@ -57,7 +82,9 @@ this is amazing!!!!
         return "<button class='btn btn-danger btn-sm' onclick=handleDidLike(" + tweet.id + "," + tweet.dislikes + ")>" + tweet.dislikes + " Dislikes</button>"
     }
 
-    function formatTweetElemet(tweet) {
+
+
+    function formatTweetElement(tweet) {
         var formattedTweet = "<div class='row'> <div class='col-12' <div class='col-sm-4 col-md-10 mx-auto border rounded py-3 mb-4 tweet' id='tweet-" + tweet.id 
     + "'><p>" + tweet.content + 
         "</p><div class='btn-group'>" + LikeBtn(tweet) + DislikeBtn(tweet) +
@@ -65,26 +92,6 @@ this is amazing!!!!
         return formattedTweet
     }
 
-    xhr.responseType = responseType
-    xhr.open(method, url)
-    xhr.onload = function() {
-        const serverResponse = xhr.response
-        var listedItems = serverResponse.response
-        var finalTweet = ""
-        var i;
-        for (i=0;i<listedItems.length; i++){
-            console.log(i)
-            console.log(listedItems[i])
-            tweetObj = listedItems[i]
-            // var currentItem = "<h1>" + listedItems[i].id + "</h1>" + "<p>" + listedItems[i].content + "<p>";
-            var currentItem = formatTweetElemet(tweetObj)
-            finalTweet += currentItem
-        }
-        tweetsElement.innerHTML = finalTweet
-        
-        // console.log(listedItems)
-    }
-    xhr.send()
     
 </script>
 
