@@ -16,13 +16,13 @@ Build a twitter-like app in Django, Bootstrap, Javascript, & React.js. Step-by-S
 
 [25 - Safe URL Redirect](../../tree/a5fc852ff4a322246dfb983283cfd1566137a595/)
 
-[26 - Prevent Form Submit via JavaScript](../../tree/76cd131d96e7ef3690a62543fc4c23c75e63d4c6/)
+[26 - Prevent Form Submit via JavaScript](../../tree/745a0bc1c52d30da620cdf12d65c4f9cafe6b1a0/)
 
-[27 - Sending Form Data via pure JavaScript](../../tree/76cd131d96e7ef3690a62543fc4c23c75e63d4c6/)
+[27 - Sending Form Data via pure JavaScript](../../tree/a9f29b17ea64eca179c1d22a84b927d9de7af8d2/)
 
-[28 - Handling Ajax Requests](../../tree/99a8891b976d6acdb82a5a2b70676e9d23bd7e6f/)
+[28 - Handling Ajax Requests](../../tree/99881659c69a0a259e36fb87e4b9e641e7cd6b06/)
 
-[29 - Serialize Django Model Object](../../tree/ebff9f8fe77005de4c1f1934d5818befd5e39c64/)
+[29 - Serialize Django Model Object](../../tree/f2aad07702f0d26c6c4fae4fcc082746798548de/)
 
 [30 - Append New Tweet & Reorder](../../tree/c088d8b548a7c981f32a0cfd7151cff4a11fd528/)
 

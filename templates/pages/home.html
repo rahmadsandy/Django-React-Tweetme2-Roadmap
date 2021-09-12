@@ -23,7 +23,7 @@ this is amazing!!!!
     {% csrf_token %}
     <div class="col-md-4 mx-auto col-10">
         <input type="hidden" name="next" value="/" />
-        <textarea name="content" id="" cols="300" rows="3" class="form-control" placeholder="Your Tweet...."></textarea>
+        <textarea name="content" required="required" id="" cols="300" rows="3" class="form-control" placeholder="Your Tweet...."></textarea>
         <button type="submit" class="btn btn-primary">Tweet</button>
     </div>
     </form>
@@ -54,7 +54,9 @@ this is amazing!!!!
             console.log(newTweetJson.likes)
             const newTweetElement = formatTweetElement(newTweetJson)
             console.log(newTweetElement)
-            tweetsContainerElement.prepend(newTweetElement)
+            const ogHtml = tweetsContainerElement.innerHTML
+            tweetsContainerElement.innerHTML = newTweetElement + ogHtml
+            myForm.reset()
         }
         
     }
