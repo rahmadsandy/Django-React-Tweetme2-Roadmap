@@ -19,6 +19,7 @@ def index(request):
 
 def tweet_list_view(request):
     qs = Tweet.objects.all()
+    print(qs)
     tweet_list = [x.serialize() for x in qs]
 
     data = {
@@ -29,19 +30,21 @@ def tweet_list_view(request):
 
 
 def tweet_create_view(request):
-    ic("ajax", request.is_ajax())
+    ic(abc)
     form = TweetForm(request.POST or None)
     next_url = request.POST.get("next") or None
-    if request.method == 'POST':
-        if form.is_valid():
+    if form.is_valid():
 
-            obj = form.save(commit=False)
-            obj.save()
-            if request.is_ajax():
-                return JsonResponse(obj.serialize(), status=201)
-            if next_url != None and is_safe_url(next_url, ALLOWED_HOSTS):
-                return redirect(next_url)
-            form = TweetForm()
+        obj = form.save(commit=False)
+        obj.save()
+        if request.is_ajax():
+            return JsonResponse(obj.serialize(), status=201)
+        if next_url != None and is_safe_url(next_url, ALLOWED_HOSTS):
+            return redirect(next_url)
+        form = TweetForm()
+    if form.errors:
+        if request.is_ajax():
+            return JsonResponse(form.errors, status=400)
 
     return render(request, 'components/form.html', context={"form": form})
 
@@ -59,3 +62,7 @@ def tweet(request, tweet_id):
         status = 404
 
     return JsonResponse(data, status=status)
+
+
+def anu(request):
+    return HttpResponse("<h1> Anu </h2>")
