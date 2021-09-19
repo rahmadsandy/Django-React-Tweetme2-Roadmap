@@ -3,7 +3,7 @@ from icecream import ic
 
 from .models import Tweet
 
-MAX_TWEET_LENGTH = 20
+MAX_TWEET_LENGTH = 200
 
 
 class TweetForm(forms.ModelForm):
