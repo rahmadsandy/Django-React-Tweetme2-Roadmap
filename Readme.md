@@ -24,15 +24,15 @@ Build a twitter-like app in Django, Bootstrap, Javascript, & React.js. Step-by-S
 
 [29 - Serialize Django Model Object](../../tree/f2aad07702f0d26c6c4fae4fcc082746798548de/)
 
-[30 - Append New Tweet & Reorder](../../tree/c088d8b548a7c981f32a0cfd7151cff4a11fd528/)
+[30 - Append New Tweet & Reorder](../../tree/f534ac2bc2edbabd75c0bc2715bc22eca2113289/)
 
-[31 - Handling Form Errors](../../tree/4b764cbc57f533e25b5fa973342da550a1e3ab91/)
+[31 - Handling Form Errors](../../tree/3879cd227ea60e70d4398d544e131d3d7674f5a0/)
 
-[32 - Rendering the Error Message via Vanilla JavaScript](../../tree/493d324165b47bc7b965916ab3233dc674991aee/)
+[32 - Rendering the Error Message via Vanilla JavaScript](../../tree/72dc2e96b5f754424d4576faaa35a3029bbdb23d/)
 
-[33 - Users & Tweets](../../tree/bca1089afdd332ec077c896069af032d86957ab0/)
+[33 - Users & Tweets](../../tree/8c47093389b8e17bf2f54f82ffda2bbd1dedf282/)
 
-[34 - Django Admin](../../tree/e4f6e285b029722925df1d58265a127d10224214/)
+[34 - Django Admin](../../tree/fb29635ec8951f81cc169a1398661f9acdc3fd31/)
 
 [35 - Associate Authenticated User to Object](../../tree/b553fc641b4e40722aa632caa4aa5bad7e63879f/)
 
