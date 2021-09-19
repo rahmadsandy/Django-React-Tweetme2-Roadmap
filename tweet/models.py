@@ -1,9 +1,14 @@
 from django.db import models
+from django.conf import settings
 import random
+from django.db import models
+
+User = settings.AUTH_USER_MODEL
 # Create your models here.
 
 
 class Tweet(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     content = models.TextField()
     image = models.FileField(upload_to='images/', null=True, blank=True)
 
