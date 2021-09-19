@@ -29,7 +29,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'tweet',
     'mikrotik',
-    'restframework',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -118,3 +118,4 @@ STATIC_URL = '/static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 APPEND_SLASH = False
 LOGIN_URL = "/login"
+MAX_TWEET_LENGTH = 200
