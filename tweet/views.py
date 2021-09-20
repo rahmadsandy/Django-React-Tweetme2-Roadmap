@@ -76,7 +76,16 @@ def tweet_create_view_pure_django(request):
     return render(request, 'components/form.html', context={"form": form})
 
 
-def tweet(request, tweet_id):
+def tweet_detail(request, tweet_id):
+    qs = Tweet.objects.filter(id=tweet_id)
+    if not qs.exists():
+        return Response({}, status=404)
+    obj = qs.first()
+    serializer = TweetSerializer(obj)
+    return Response({}, status=200)
+
+
+def tweet_detail_pure_django(request, tweet_id):
     data = {
         "id": tweet_id,
     }
