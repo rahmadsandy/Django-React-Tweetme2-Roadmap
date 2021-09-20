@@ -10,7 +10,9 @@ from .serializers import TweetSerializer
 
 
 from rest_framework.response import Response
-from rest_framework.decorators import api_view
+from rest_framework.authentication import SessionAuthentication
+from rest_framework.decorators import api_view, authentication_classes, permission_classes
+from rest_framework.permissions import IsAuthenticated
 
 
 ALLOWED_HOSTS = settings.ALLOWED_HOSTS
@@ -42,6 +44,8 @@ def tweet_list_view_pure_django(request):
 
 
 @api_view(['POST'])
+# @authentication_classes([SessionAuthentication])
+@permission_classes([IsAuthenticated])
 def tweet_create_view(request):
     serializer = TweetSerializer(data=request.POST or None)
     if serializer.is_valid(raise_exception=True):

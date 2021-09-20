@@ -90,6 +90,10 @@ this is amazing!!!!
                 alert("user not authenticated, please login")
                 window.location.href = "/admin/login/"
 
+            } else if (xhr.status === 403){
+                alert("user not authenticated, please login")
+                window.location.href = "/admin/login/"
+
             } else if (xhr.status === 500) {
                 alert("There was a server error, please try again.")
             }
