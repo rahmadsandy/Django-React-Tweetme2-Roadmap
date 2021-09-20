@@ -80,13 +80,28 @@ def tweet_create_view_pure_django(request):
     return render(request, 'components/form.html', context={"form": form})
 
 
+@api_view(['GET'])
 def tweet_detail(request, tweet_id):
     qs = Tweet.objects.filter(id=tweet_id)
     if not qs.exists():
         return Response({}, status=404)
     obj = qs.first()
     serializer = TweetSerializer(obj)
-    return Response({}, status=200)
+    return Response(serializer.data, status=200)
+
+
+@api_view(['DELETE', 'POST'])
+@permission_classes([IsAuthenticated])
+def tweet_delete(request, tweet_id):
+    qs = Tweet.objects.filter(id=tweet_id)
+    if not qs.exists():
+        return Response({}, status=404)
+    qs = qs.filter(user=request.user)
+    if not qs.exists():
+        return Response({"message": "You Cannot delete this tweet"}, status=401)
+    obj = qs.first()
+    obj.delete()
+    return Response({"message": "Tweet Removed"}, status=200)
 
 
 def tweet_detail_pure_django(request, tweet_id):
