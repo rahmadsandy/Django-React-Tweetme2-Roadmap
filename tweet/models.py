@@ -7,7 +7,7 @@ User = settings.AUTH_USER_MODEL
 # Create your models here.
 
 
-class TweeetLike(models.Model):
+class TweetLike(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     tweet = models.ForeignKey("Tweet", on_delete=models.CASCADE)
     timestamp = models.DateTimeField(auto_now_add=True)
@@ -16,7 +16,7 @@ class TweeetLike(models.Model):
 class Tweet(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     likes = models.ManyToManyField(
-        User, related_name='tweet_user', through=TweeetLike)
+        User, related_name='tweet_user', through=TweetLike)
     content = models.TextField()
     image = models.FileField(upload_to='images/', null=True, blank=True)
     timestamp = models.DateTimeField(auto_now_add=True)

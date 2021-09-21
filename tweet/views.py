@@ -4,7 +4,7 @@ from django.utils.http import is_safe_url
 from django.http import HttpResponse, Http404, JsonResponse
 import random
 from icecream import ic
-from .models import Tweet
+from .models import Tweet, TweetLike
 from .forms import TweetForm
 from .serializers import TweetSerializer
 
@@ -120,4 +120,6 @@ def tweet_detail_pure_django(request, tweet_id):
 
 
 def anu(request):
-    return HttpResponse("<h1> Anu </h2>")
+    qs = TweetLike.objects.all()
+    ic(qs)
+    return HttpResponse(qs)
