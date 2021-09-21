@@ -1,7 +1,6 @@
 from django.db import models
 from django.conf import settings
 import random
-from django.db import models
 
 User = settings.AUTH_USER_MODEL
 # Create your models here.

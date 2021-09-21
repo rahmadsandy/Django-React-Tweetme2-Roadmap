@@ -6,7 +6,7 @@ import random
 from icecream import ic
 from .models import Tweet, TweetLike
 from .forms import TweetForm
-from .serializers import TweetSerializer
+from .serializers import TweetSerializer, TweetActionSerializer
 
 
 from rest_framework.response import Response
@@ -101,6 +101,28 @@ def tweet_delete(request, tweet_id):
         return Response({"message": "You Cannot delete this tweet"}, status=401)
     obj = qs.first()
     obj.delete()
+    return Response({"message": "Tweet Removed"}, status=200)
+
+
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def tweet_action_view(request):
+    serializer = TweetActionSerializer(request.POST)
+    if serializer.is_valid(raise_exception=True):
+        data = serializer.validated_data()
+        tweet_id = data.get("id")
+        action = data.get("action")
+        qs = TweetLike.objects.filter(id=tweet_id)
+        if not qs.exists():
+            return Response({}, status=404)
+        obj = qs.first()
+        if action == "like":
+            obj.likes.add(request.user)
+        elif action == "unlike":
+            obj.likes.remove(request.user)
+        elif action == "retweet":
+            pass
+
     return Response({"message": "Tweet Removed"}, status=200)
 
 

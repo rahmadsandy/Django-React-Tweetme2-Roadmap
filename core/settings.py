@@ -119,6 +119,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 APPEND_SLASH = False
 LOGIN_URL = "/login"
 MAX_TWEET_LENGTH = 200
+TWEET_ACTION_OPTIONS = ["like", "unlike", "retweet"]
 
 DEFAULT_RENDERER_CLASSES = [
     'rest_framework.renderers.JSONRenderer',
