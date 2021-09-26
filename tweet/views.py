@@ -24,6 +24,10 @@ def index(request):
     return render(request, 'pages/home.html')
 
 
+def ori(request):
+    return render(request, 'pages/ori.html')
+
+
 @api_view(['GET'])
 def tweet_list_view(request):
     qs = Tweet.objects.all()
@@ -106,13 +110,46 @@ def tweet_delete(request, tweet_id):
 
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
-def tweet_action_view(request):
-    serializer = TweetActionSerializer(data=request.POST)
+def tweet_action_view(request, *args, **kwargs):
+    '''
+    id is required.
+    Action options are: like, unlike, retweet
+    '''
+    print(request.data, request.POST)
+    serializer = TweetActionSerializer(data=request.data)
     if serializer.is_valid(raise_exception=True):
-        data = serializer.validated_data()
+        data = serializer.validated_data
         tweet_id = data.get("id")
         action = data.get("action")
-        qs = TweetLike.objects.filter(id=tweet_id)
+        qs = Tweet.objects.filter(id=tweet_id)
+        if not qs.exists():
+            return Response({}, status=404)
+        obj = qs.first()
+        if action == "like":
+            obj.likes.add(request.user)
+            serializer = TweetSerializer(obj)
+            return Response(serializer.data, status=200)
+        elif action == "unlike":
+            obj.likes.remove(request.user)
+        elif action == "retweet":
+            # this is todo
+            pass
+    return Response({}, status=200)
+
+
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def tweet_action_view_test(request, *args, **kwargs):
+    '''
+    id is required.
+    Action options are: like, unlike, retweet
+    '''
+    serializer = TweetActionSerializer(data=request.POST)
+    if serializer.is_valid(raise_exception=True):
+        data = serializer.validated_data
+        tweet_id = data.get("id")
+        action = data.get("action")
+        qs = Tweet.objects.filter(id=tweet_id)
         if not qs.exists():
             return Response({}, status=404)
         obj = qs.first()
@@ -121,9 +158,9 @@ def tweet_action_view(request):
         elif action == "unlike":
             obj.likes.remove(request.user)
         elif action == "retweet":
+            # this is todo
             pass
-
-    return Response({"message": "Tweet Removed"}, status=200)
+    return Response({"message": "Tweet removed"}, status=200)
 
 
 def tweet_detail_pure_django(request, tweet_id):

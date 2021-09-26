@@ -6,7 +6,11 @@ from .views import (
     tweet_list_view,
     tweet_create_view,
     tweet_delete, anu,
-    tweet_action_view
+    tweet_action_view,
+    tweet_action_view_test,
+    ori,
+
+
 )
 
 urlpatterns = [
@@ -17,7 +21,10 @@ urlpatterns = [
     path('api/tweets/<int:tweet_id>/delete',
          tweet_delete, name='tweet-delete'),
     path('api/tweets/action',
-         tweet_action_view, name='tweet-delete'),
+         tweet_action_view, name='tweet-action'),
+    path('test/api/tweets/action',
+         tweet_action_view_test, name='tweet-action-test'),
+    path('ori', ori, name='ori'),
     path('anu/', anu, name='anu'),
 
 ]
