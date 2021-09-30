@@ -6,9 +6,11 @@ import random
 from icecream import ic
 from .models import Tweet, TweetLike
 from .forms import TweetForm
-from .serializers import TweetSerializer, TweetActionSerializer
-
-
+from .serializers import (
+    TweetSerializer,
+    TweetActionSerializer,
+    TweetCreateSerializer,
+)
 from rest_framework.response import Response
 from rest_framework.authentication import SessionAuthentication
 from rest_framework.decorators import api_view, authentication_classes, permission_classes
@@ -54,7 +56,7 @@ def tweet_list_view_pure_django(request):
 # @authentication_classes([SessionAuthentication])
 @permission_classes([IsAuthenticated])
 def tweet_create_view(request):
-    serializer = TweetSerializer(data=request.POST or None)
+    serializer = TweetCreateSerializer(data=request.POST or None)
     if serializer.is_valid(raise_exception=True):
         serializer.save(user=request.user)
         return Response(serializer.data, status=201)
